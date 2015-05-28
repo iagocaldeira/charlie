@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<link href='http://fonts.googleapis.com/css?family=Just+Another+Hand' rel='stylesheet' type='text/css'>
+
+<head>
+    <script>
+        var recognizer = new webkitSpeechRecognition();
+        recognizer.lang = "en";
+        recognizer.continuous = true;
+        //recognizer.interimResults = true;
+        recognizer.onresult = function(event) {
+            if (event.results.length > 0) {
+                var result = event.results[event.results.length - 1];
+                charlieResponse(result[0].transcript);
+                console.log(result[0].transcript);
+
+            }
+        };
+        recognizer.start();
+        var charlieResponse = function(speech) {
+            if (speech == 'Charlie Charlie can we play')
+                moveYes();
+            else if (speech.indexOf("Charlie") > -1 && speech.split(' ').length > 2) {
+                Math.random() < 0.5 ? moveYes() : moveNo();
+            } else {
+                moveNo();
+            }
+            setInterval(function() {
+                back()
+            }, 3000);
+        };
+
+        var moveYes = function() {
+            document.getElementById("verticalPen").className = "verticalPenAnimationTrue";
+
+        };
+        var moveNo = function() {
+            document.getElementById("verticalPen").className = "verticalPenAnimationFalse";
+        };
+        var back = function() {
+            document.getElementById("verticalPen").className = "verticalPenStopped";
+        };
+    </script>
+    <style>
+        #footer {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+        }
+        
+        .tooltip {
+            display: inline;
+            position: relative;
+        }
+        
+        .tooltip:hover:after {
+            white-space: pre;
+            background: #333;
+            background: rgba(0, 0, 0, .8);
+            border-radius: 5px;
+            bottom: 26px;
+            color: #fff;
+            content: attr(title);
+            left: 20%;
+            padding: 5px 15px;
+            position: absolute;
+            z-index: 98;
+            width: 400px;
+        }
+        .tooltip:hover:before {
+            white-space: pre;
+            border: solid;
+            border-color: #333 transparent;
+            border-width: 6px 6px 0 6px;
+            bottom: 20px;
+            content: "";
+            left: 50%;
+            position: absolute;
+            z-index: 99;
+        }
+        body {
+            margin: 180px
+        }
+        .responseLabels {
+            font-family: 'Just Another Hand', cursive;
+            font-size: 60pt;
+            color: #5980d4;
+        }
+        .animation,
+        .background {
+            position: absolute;
+        }
+        .verticalPenStopped {
+            position: absolute;
+            transform: rotate(270deg);
+        }
+        #verticalPen {
+            -webkit-transition-duration: 1s;
+            -moz-transition-duration: 1s;
+            -o-transition-duration: 1s;
+            transition-duration: 1s;
+            -webkit-transition-property: -webkit-transform;
+            -moz-transition-property: -moz-transform;
+            -o-transition-property: -o-transform;
+            transition-property: transform;
+        }
+        .verticalPenAnimationTrue {
+            position: absolute;
+            -webkit-transform: rotate(240deg);
+            -ms-transform: rotate(240deg);
+            transform: rotate(240deg);
+        }
+        .verticalPenAnimationFalse {
+            position: absolute;
+            -webkit-transform: rotate(300deg);
+            -ms-transform: rotate(300deg);
+            transform: rotate(300deg);
+        }
+        
+        #topLeftLabel {
+            position: absolute;
+            top: 50px;
+        }
+        #topRightLabel {
+            position: absolute;
+            top: 50px;
+            left: 800px
+        }
+        #bottomLeftLabel {
+            position: absolute;
+            top: 500px;
+        }
+        #bottomRightLabel {
+            position: absolute;
+            top: 500px;
+            left: 800px
+        }
+    </style>
+</head>
+<body>
+    <img id="horizontalPen" class="background" src="http://s15.postimg.org/hyndyxxl7/pen_147110_640.png" border="0">
+    <img id="verticalPen" class="verticalPenStopped" src="http://s15.postimg.org/hyndyxxl7/pen_147110_640.png" border="0">
+    <span class='responseLabels' id='topLeftLabel'>Yes</span>
+    <span class='responseLabels' id='bottomRightLabel'>Yes</span>
+    <span class='responseLabels' id='topRightLabel'>No</span>
+    <span class='responseLabels' id='bottomLeftLabel'>No</span>
+    <div id='footer'>
+        <a class='tooltip' href="#" title='Allow microphone recognition!
+Begin with: "Charlie, Charlie can we play?".
+Than ask anything beggining with his name.
+At the end, always say:"Charlie, Charlie can we stop?"'>
+            <span title="More"><h2>How to Play</h2></span>
+        </a>
+        <a href='facebook.com/iagocaldeira' class='tooltip' title='Quem falar que é gambiarra leva voadeira!'><pre><> with <3 by: Iago Caldeira</pre></a>
+    </div>
+</body>
+</html>
