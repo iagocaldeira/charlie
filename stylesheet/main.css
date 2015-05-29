@@ -1,0 +1,90 @@
+body {
+    margin: 180px
+}
+#footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+.tooltip {
+    display: inline;
+    position: relative;
+}
+
+.tooltip:hover:after {
+    white-space: pre;
+    background: #333;
+    background: rgba(0, 0, 0, .8);
+    border-radius: 5px;
+    bottom: 26px;
+    color: #fff;
+    content: attr(title);
+    left: 20%;
+    padding: 5px 15px;
+    position: absolute;
+    z-index: 98;
+    width: 400px;
+}
+.tooltip:hover:before {
+    white-space: pre;
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 6px 6px 0 6px;
+    bottom: 20px;
+    content: "";
+    left: 50%;
+    position: absolute;
+    z-index: 99;
+}
+.responseLabels {
+    font-family: 'Just Another Hand', cursive;
+    font-size: 60pt;
+    color: #5980d4;
+    position: absolute;
+}
+.animation,
+.background {
+    position: absolute;
+}
+.verticalPenStopped {
+    position: absolute;
+    transform: rotate(270deg);
+}
+#verticalPen {
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-duration: 1s;
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+}
+.verticalPenAnimationTrue {
+    position: absolute;
+    -webkit-transform: rotate(240deg);
+    -ms-transform: rotate(240deg);
+    transform: rotate(240deg);
+}
+.verticalPenAnimationFalse {
+    position: absolute;
+    -webkit-transform: rotate(300deg);
+    -ms-transform: rotate(300deg);
+    transform: rotate(300deg);
+}
+
+#topLeftLabel {
+    top: 50px;
+}
+#topRightLabel {
+    top: 50px;
+    left: 800px
+}
+#bottomLeftLabel {
+    top: 500px;
+}
+#bottomRightLabel {
+    top: 500px;
+    left: 800px
+}

@@ -1,154 +1,22 @@
 <!DOCTYPE html>
 <html>
-
-<link href='http://fonts.googleapis.com/css?family=Just+Another+Hand' rel='stylesheet' type='text/css'>
-
 <head>
+    <meta charset="utf-8">
     <title>Charlie Challenge</title>
+    <link href='http://fonts.googleapis.com/css?family=Just+Another+Hand' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="stylesheet/main.css"></link>
     <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-63515350-1', 'auto');
-  ga('send', 'pageview');
+      ga('create', 'UA-63515350-1', 'auto');
+      ga('send', 'pageview');
 
-</script>
-    
-    <script>
-        var recognizer = new webkitSpeechRecognition();
-        recognizer.lang = "en";
-        recognizer.continuous = true;
-        //recognizer.interimResults = true;
-        recognizer.onresult = function(event) {
-            if (event.results.length > 0) {
-                var result = event.results[event.results.length - 1];
-                charlieResponse(result[0].transcript);
-                console.log(result[0].transcript);
-
-            }
-        };
-        recognizer.start();
-        var charlieResponse = function(speech) {
-            if (speech == 'Charlie Charlie can we play')
-                moveYes();
-            else if (speech.indexOf("Charlie") > -1 && speech.split(' ').length > 2) {
-                Math.random() < 0.5 ? moveYes() : moveNo();
-            } else {
-                moveNo();
-            }
-            setInterval(function() {
-                back()
-            }, 3000);
-        };
-
-        var moveYes = function() {
-            document.getElementById("verticalPen").className = "verticalPenAnimationTrue";
-
-        };
-        var moveNo = function() {
-            document.getElementById("verticalPen").className = "verticalPenAnimationFalse";
-        };
-        var back = function() {
-            document.getElementById("verticalPen").className = "verticalPenStopped";
-        };
     </script>
-    <style>
-        #footer {
-            position: absolute;
-            bottom: 0px;
-            left: 0px;
-        }
-        
-        .tooltip {
-            display: inline;
-            position: relative;
-        }
-        
-        .tooltip:hover:after {
-            white-space: pre;
-            background: #333;
-            background: rgba(0, 0, 0, .8);
-            border-radius: 5px;
-            bottom: 26px;
-            color: #fff;
-            content: attr(title);
-            left: 20%;
-            padding: 5px 15px;
-            position: absolute;
-            z-index: 98;
-            width: 400px;
-        }
-        .tooltip:hover:before {
-            white-space: pre;
-            border: solid;
-            border-color: #333 transparent;
-            border-width: 6px 6px 0 6px;
-            bottom: 20px;
-            content: "";
-            left: 50%;
-            position: absolute;
-            z-index: 99;
-        }
-        body {
-            margin: 180px
-        }
-        .responseLabels {
-            font-family: 'Just Another Hand', cursive;
-            font-size: 60pt;
-            color: #5980d4;
-        }
-        .animation,
-        .background {
-            position: absolute;
-        }
-        .verticalPenStopped {
-            position: absolute;
-            transform: rotate(270deg);
-        }
-        #verticalPen {
-            -webkit-transition-duration: 1s;
-            -moz-transition-duration: 1s;
-            -o-transition-duration: 1s;
-            transition-duration: 1s;
-            -webkit-transition-property: -webkit-transform;
-            -moz-transition-property: -moz-transform;
-            -o-transition-property: -o-transform;
-            transition-property: transform;
-        }
-        .verticalPenAnimationTrue {
-            position: absolute;
-            -webkit-transform: rotate(240deg);
-            -ms-transform: rotate(240deg);
-            transform: rotate(240deg);
-        }
-        .verticalPenAnimationFalse {
-            position: absolute;
-            -webkit-transform: rotate(300deg);
-            -ms-transform: rotate(300deg);
-            transform: rotate(300deg);
-        }
-        
-        #topLeftLabel {
-            position: absolute;
-            top: 50px;
-        }
-        #topRightLabel {
-            position: absolute;
-            top: 50px;
-            left: 800px
-        }
-        #bottomLeftLabel {
-            position: absolute;
-            top: 500px;
-        }
-        #bottomRightLabel {
-            position: absolute;
-            top: 500px;
-            left: 800px
-        }
-    </style>
+
+    <script src="js/main.js"></script>
 </head>
 <body>
     <img id="horizontalPen" class="background" src="https://cloud.githubusercontent.com/assets/6986361/7862333/84c010de-052b-11e5-81bf-c83e42ae9b00.png" border="0">
@@ -167,5 +35,6 @@ At the end, always say:"Charlie, Charlie can we stop?"'>
         <a href='http://facebook.com/iagocaldeira' class='tooltip' title='Quem falar que é gambiarra leva voadeira!'><pre><> with <3 by: Iago Caldeira</pre></a>
 <a href='https://github.com/iagocaldeira/charlie'>Github</a>
     </div>
+
 </body>
 </html>
